@@ -1,10 +1,18 @@
 {
   "version": "1.0",
-  "lastUpdated": "",
+  "lastUpdated": "2026-09-15T02:27:46.798Z",
   "basics": {
     "title": "أساسيات اللغة الإنكليزية",
     "subtitle": "ابدأ رحلتك من هنا",
-    "items": []
+    "items": [
+      {
+        "id": "basic-1789439263700",
+        "title": "A",
+        "description": "عاش العراق",
+        "pdfUrl": "",
+        "imageUrl": ""
+      }
+    ]
   },
   "stages": [
     {
