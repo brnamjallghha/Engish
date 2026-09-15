@@ -1,0 +1,69 @@
+{
+  "version": "1.0",
+  "lastUpdated": "",
+  "basics": {
+    "title": "أساسيات اللغة الإنكليزية",
+    "subtitle": "ابدأ رحلتك من هنا",
+    "items": []
+  },
+  "stages": [
+    {
+      "id": "1st-middle",
+      "name": "الأول متوسط",
+      "type": "middle",
+      "order": 1,
+      "visible": true,
+      "hasMinistry": false
+    },
+    {
+      "id": "2nd-middle",
+      "name": "الثاني متوسط",
+      "type": "middle",
+      "order": 2,
+      "visible": true,
+      "hasMinistry": false
+    },
+    {
+      "id": "3rd-middle",
+      "name": "الثالث متوسط",
+      "type": "middle",
+      "order": 3,
+      "visible": true,
+      "hasMinistry": true
+    },
+    {
+      "id": "4th-prep",
+      "name": "الرابع الإعدادي",
+      "type": "preparatory",
+      "order": 4,
+      "visible": true,
+      "hasMinistry": false
+    },
+    {
+      "id": "5th-prep",
+      "name": "الخامس الإعدادي",
+      "type": "preparatory",
+      "order": 5,
+      "visible": true,
+      "hasMinistry": false
+    },
+    {
+      "id": "6th-prep",
+      "name": "السادس الإعدادي",
+      "type": "preparatory",
+      "order": 6,
+      "visible": true,
+      "hasMinistry": true
+    }
+  ],
+  "books": [],
+  "summaries": [],
+  "questions": [],
+  "videos": [],
+  "support": {
+    "teacherName": "الأستاذ يوسف علي",
+    "teacherPhone": "07801644636",
+    "developerName": "المبرمج حيدر عباس",
+    "developerWhatsapp": "07765564935"
+  }
+}
