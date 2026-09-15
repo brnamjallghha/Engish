@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "lastUpdated": "2026-09-15T02:28:25.630Z",
+  "lastUpdated": "2026-09-15T09:52:10.926Z",
   "basics": {
     "title": "أساسيات اللغة الإنكليزية",
     "subtitle": "ابدأ رحلتك من هنا",
@@ -9,6 +9,13 @@
         "id": "basic-1789439263700",
         "title": "A",
         "description": "عاش العراق",
+        "pdfUrl": "",
+        "imageUrl": ""
+      },
+      {
+        "id": "basic-1789465928982",
+        "title": "الحروف لا",
+        "description": "asdf",
         "pdfUrl": "",
         "imageUrl": ""
       }
