@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لوحة التحكم - اللغة الإنكليزية لجميع المراحل</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #EEF3FB 0%, #F8FAFF 50%, #E0E7FF 100%);
+    padding: 16px;
+    color: #1F2937;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header {
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 24px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 32px rgba(31,41,55,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 { font-size: 20px; color: #1E3A8A; }
+  .badge {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .card {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 22px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 32px rgba(31,41,55,0.08);
+  }
+  .card h2 {
+    font-size: 16px;
+    margin-bottom: 14px;
+    color: #1E3A8A;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2::before {
+    content: '';
+    width: 4px;
+    height: 18px;
+    background: linear-gradient(180deg, #3B82F6, #1E3A8A);
+    border-radius: 4px;
+  }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 6px;
+    margin-top: 12px;
+  }
+  label:first-of-type { margin-top: 0; }
+  input, select, textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid rgba(59,130,246,0.2);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.75);
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s;
+    color: #1F2937;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 4px rgba(59,130,246,0.12);
+  }
+  textarea { min-height: 70px; resize: vertical; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+  button {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+    font-family: inherit;
+  }
+  button:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59,130,246,0.4); }
+  button:active { transform: translateY(0); }
+  button.ghost {
+    background: rgba(255,255,255,0.75);
+    color: #1E3A8A;
+    border: 1.5px solid rgba(59,130,246,0.3);
+    box-shadow: none;
+  }
+  button.danger {
+    background: linear-gradient(135deg, #DC2626, #EF4444);
+    box-shadow: 0 4px 16px rgba(220,38,38,0.3);
+  }
+  .btn-group { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .item {
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(59,130,246,0.15);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s;
+  }
+  .item:hover { background: rgba(255,255,255,0.9); }
+  .item-info { flex: 1; min-width: 0; }
+  .item-title { font-weight: 700; margin-bottom: 4px; font-size: 14px; }
+  .item-desc { font-size: 12px; color: #6B7280; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .item-actions { display: flex; gap: 6px; }
+  .icon-btn {
+    width: 36px; height: 36px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(59,130,246,0.1);
+    color: #1E3A8A;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .icon-btn:hover { background: rgba(59,130,246,0.25); }
+  .icon-btn.del { background: rgba(220,38,38,0.1); color: #DC2626; }
+  .icon-btn.del:hover { background: rgba(220,38,38,0.25); }
+  .empty { text-align: center; padding: 24px; color: #9CA3AF; font-size: 13px; }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .tabs::-webkit-scrollbar { height: 0; }
+  .tab {
+    padding: 9px 16px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.65);
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6B7280;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab.active {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+    color: white;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.3);
+  }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1F2937;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 14px;
+    font-size: 13px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 9999;
+    max-width: 90%;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  .toast.success { background: #059669; }
+  .toast.error { background: #DC2626; }
+  .hidden { display: none !important; }
+  .hint { font-size: 12px; color: #6B7280; margin-top: 4px; }
+  .login-card { max-width: 460px; margin: 60px auto; text-align: center; }
+  .login-card input { text-align: center; font-family: monospace; font-size: 12px; }
+  .drive-hint {
+    background: rgba(59,130,246,0.08);
+    border: 1px dashed rgba(59,130,246,0.4);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 12px;
+    color: #1E3A8A;
+    margin-top: 6px;
+    line-height: 1.7;
+  }
+  .drive-hint b { color: #1E3A8A; }
+  .preview-img {
+    margin-top: 8px;
+    max-width: 140px;
+    max-height: 180px;
+    border-radius: 12px;
+    border: 2px solid rgba(59,130,246,0.2);
+    display: none;
+  }
+  .preview-img.show { display: block; }
+  .saved-badge { background: linear-gradient(135deg,#1E3A8A,#3B82F6); color: white; }
+  .unsaved-badge { background: linear-gradient(135deg,#D97706,#F59E0B); color: white; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div id="loginScreen">
+    <div class="card login-card">
+      <h1 style="margin-bottom:8px;">🔐 لوحة التحكم</h1>
+      <p style="color:#6B7280;font-size:13px;margin-bottom:20px;">
+        اللغة الإنكليزية لجميع المراحل
+      </p>
+      <label>رمز الدخول (GitHub Token)</label>
+      <input type="password" id="tokenInput" placeholder="ghp_..." dir="ltr">
+      <p class="hint">الصق الرمز الذي أعطاك إياه المسؤول</p>
+      <div class="btn-group" style="justify-content:center;">
+        <button onclick="login()">دخول</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="adminScreen" class="hidden">
+    <header>
+      <div>
+        <h1>📚 اللغة الإنكليزية لجميع المراحل</h1>
+        <p style="color:#6B7280;font-size:12px;margin-top:4px;">لوحة إدارة المحتوى</p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <span class="badge saved-badge" id="saveStatus">محفوظ ✅</span>
+        <button class="ghost" onclick="loadFromGitHub()">🔄 تحديث</button>
+        <button class="danger" onclick="logout()">خروج</button>
+      </div>
+    </header>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab(event,'books')">📖 الكتب</button>
+      <button class="tab" onclick="switchTab(event,'summaries')">📝 الملخصات</button>
+      <button class="tab" onclick="switchTab(event,'questions')">❓ الأسئلة</button>
+      <button class="tab" onclick="switchTab(event,'videos')">🎬 الفيديوهات</button>
+      <button class="tab" onclick="switchTab(event,'basics')">🌟 الأساسيات</button>
+      <button class="tab" onclick="switchTab(event,'stages')">🏫 المراحل</button>
+      <button class="tab" onclick="switchTab(event,'support')">📞 الدعم</button>
+      <button class="tab" onclick="switchTab(event,'raw')">⚙️ JSON</button>
+    </div>
+
+    <div id="tab-books" class="tab-content active">
+      <div class="card">
+        <h2 id="book-form-title">إضافة كتاب</h2>
+        <input type="hidden" id="book-edit-index" value="">
+        <div class="row">
+          <div><label>المرحلة</label><select id="book-stage"></select></div>
+          <div><label>اسم الكتاب</label><input id="book-title" placeholder="كتاب اللغة الإنكليزية"></div>
+        </div>
+        <label>الوصف (اختياري)</label>
+        <textarea id="book-desc"></textarea>
+        <label>رابط الكتاب من Google Drive</label>
+        <input id="book-pdf" dir="ltr" placeholder="https://drive.google.com/file/d/.../view">
+        <div class="drive-hint">
+          📌 <b>كيف ترفع على Google Drive:</b><br>
+          1. ارفع الملف على Drive<br>
+          2. اضغط يمين → <b>مشاركة</b> → <b>أي شخص لديه الرابط</b><br>
+          3. انسخ الرابط والصقه هنا 👆
+        </div>
+        <label>رابط صورة الغلاف (اختياري)</label>
+        <input id="book-cover" dir="ltr" oninput="previewImg('book-cover','book-cover-preview')" placeholder="https://...">
+        <img id="book-cover-preview" class="preview-img">
+        <div class="btn-group">
+          <button onclick="saveBook()" id="book-save-btn">➕ إضافة الكتاب</button>
+          <button class="ghost hidden" onclick="cancelBookEdit()" id="book-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+      <div class="card"><h2>الكتب المضافة</h2><div id="books-list"></div></div>
+    </div>
+
+    <div id="tab-summaries" class="tab-content">
+      <div class="card">
+        <h2 id="sum-form-title">إضافة ملخص</h2>
+        <input type="hidden" id="sum-edit-index" value="">
+        <div class="row">
+          <div><label>المرحلة</label><select id="sum-stage"></select></div>
+          <div><label>عنوان الملخص</label><input id="sum-title"></div>
+        </div>
+        <label>الوصف (اختياري)</label>
+        <textarea id="sum-desc"></textarea>
+        <label>رابط الملف من Google Drive</label>
+        <input id="sum-pdf" dir="ltr" placeholder="https://drive.google.com/file/d/.../view">
+        <div class="drive-hint">📌 تأكد أن المشاركة على "أي شخص لديه الرابط"</div>
+        <div class="btn-group">
+          <button onclick="saveSummary()" id="sum-save-btn">➕ إضافة</button>
+          <button class="ghost hidden" onclick="cancelSummaryEdit()" id="sum-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+      <div class="card"><h2>الملخصات المضافة</h2><div id="summaries-list"></div></div>
+    </div>
+
+    <div id="tab-questions" class="tab-content">
+      <div class="card">
+        <h2 id="q-form-title">إضافة أسئلة</h2>
+        <input type="hidden" id="q-edit-index" value="">
+        <div class="row">
+          <div><label>المرحلة</label><select id="q-stage"></select></div>
+          <div><label>نوع الأسئلة</label>
+            <select id="q-cat">
+              <option value="monthly">📅 أسئلة شهرية</option>
+              <option value="midyear">📗 أسئلة نصف السنة</option>
+              <option value="final">📕 أسئلة نهاية السنة</option>
+              <option value="ministry">🏆 أسئلة وزارية</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div><label>العنوان</label><input id="q-title"></div>
+          <div><label>السنة (اختياري)</label><input id="q-year"></div>
+        </div>
+        <label>الوصف (اختياري)</label>
+        <textarea id="q-desc"></textarea>
+        <label>رابط الملف من Google Drive</label>
+        <input id="q-pdf" dir="ltr" placeholder="https://drive.google.com/file/d/.../view">
+        <div class="drive-hint">📌 للأسئلة الوزارية اختر "🏆 أسئلة وزارية"</div>
+        <div class="btn-group">
+          <button onclick="saveQuestion()" id="q-save-btn">➕ إضافة</button>
+          <button class="ghost hidden" onclick="cancelQuestionEdit()" id="q-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+      <div class="card"><h2>الأسئلة المضافة</h2><div id="questions-list"></div></div>
+    </div>
+
+    <div id="tab-videos" class="tab-content">
+      <div class="card">
+        <h2 id="v-form-title">إضافة فيديو</h2>
+        <input type="hidden" id="v-edit-index" value="">
+        <div class="row">
+          <div><label>المرحلة</label><select id="v-stage"></select></div>
+          <div><label>المدة (اختياري)</label><input id="v-duration" placeholder="15:30"></div>
+        </div>
+        <label>عنوان الفيديو</label>
+        <input id="v-title">
+        <label>الوصف (اختياري)</label>
+        <textarea id="v-desc"></textarea>
+        <label>رابط الفيديو على YouTube</label>
+        <input id="v-url" dir="ltr" placeholder="https://www.youtube.com/watch?v=...">
+        <div class="drive-hint">📌 الصق رابط الفيديو من YouTube مباشرة</div>
+        <label>رابط صورة الفيديو (اختياري)</label>
+        <input id="v-thumb" dir="ltr" oninput="previewImg('v-thumb','v-thumb-preview')">
+        <img id="v-thumb-preview" class="preview-img">
+        <div class="btn-group">
+          <button onclick="saveVideo()" id="v-save-btn">➕ إضافة</button>
+          <button class="ghost hidden" onclick="cancelVideoEdit()" id="v-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+      <div class="card"><h2>الفيديوهات المضافة</h2><div id="videos-list"></div></div>
+    </div>
+
+    <div id="tab-basics" class="tab-content">
+      <div class="card">
+        <h2 id="b-form-title">إضافة عنصر أساسيات</h2>
+        <input type="hidden" id="b-edit-index" value="">
+        <label>العنوان</label>
+        <input id="b-title">
+        <label>الوصف (اختياري)</label>
+        <textarea id="b-desc"></textarea>
+        <label>رابط الملف من Google Drive (اختياري)</label>
+        <input id="b-pdf" dir="ltr">
+        <div class="btn-group">
+          <button onclick="saveBasic()" id="b-save-btn">➕ إضافة</button>
+          <button class="ghost hidden" onclick="cancelBasicEdit()" id="b-cancel-btn">إلغاء</button>
+        </div>
+      </div>
+      <div class="card"><h2>عناصر الأساسيات</h2><div id="basics-list"></div></div>
+    </div>
+
+    <div id="tab-stages" class="tab-content">
+      <div class="card">
+        <h2>المراحل الدراسية</h2>
+        <p class="hint" style="margin-bottom:12px;">عدّل الأسماء، الترتيب، الإظهار، أو قسم الوزاريات</p>
+        <div id="stages-list"></div>
+      </div>
+    </div>
+
+    <div id="tab-support" class="tab-content">
+      <div class="card">
+        <h2>معلومات الدعم</h2>
+        <div class="row">
+          <div><label>اسم الأستاذ</label><input id="s-teacher-name"></div>
+          <div><label>هاتف الأستاذ</label><input id="s-teacher-phone" dir="ltr"></div>
+        </div>
+        <div class="row">
+          <div><label>اسم المبرمج</label><input id="s-dev-name"></div>
+          <div><label>واتساب المبرمج</label><input id="s-dev-wa" dir="ltr"></div>
+        </div>
+        <div class="btn-group"><button onclick="saveSupport()">💾 حفظ</button></div>
+      </div>
+    </div>
+
+    <div id="tab-raw" class="tab-content">
+      <div class="card">
+        <h2>JSON خام (للمتقدمين)</h2>
+        <textarea id="rawJson" style="min-height:400px;font-family:monospace;font-size:12px;" dir="ltr"></textarea>
+        <div class="btn-group">
+          <button onclick="applyRaw()">تطبيق</button>
+          <button class="ghost" onclick="refreshRaw()">إعادة تعيين</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="position:sticky;bottom:16px;background:linear-gradient(135deg,#1E3A8A,#3B82F6);color:white;border:none;z-index:100;padding:16px 20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <div>
+          <div style="font-weight:700;font-size:14px;">حفظ التغييرات في GitHub</div>
+          <div style="font-size:11px;opacity:0.85;">تظهر في التطبيق فوراً</div>
+        </div>
+        <button class="ghost" style="background:white;color:#1E3A8A;" onclick="saveToGitHub()">💾 حفظ الآن</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================
+   ⚠️ إعدادات المستودع
+   ============================================ */
+const GITHUB_USER = 'brnamjallghha';
+const GITHUB_REPO = 'Engish';
+const GITHUB_BRANCH = 'main';
+const FILE_PATH = 'content.json';
+
+const API_URL = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${FILE_PATH}`;
+
+let token = '';
+let content = {};
+let sha = '';
+
+function convertGoogleDriveUrl(url) {
+  if (!url) return '';
+  url = url.trim();
+  const patterns = [
+    /\/file\/d\/([a-zA-Z0-9_-]+)/,
+    /[?&]id=([a-zA-Z0-9_-]+)/,
+    /\/d\/([a-zA-Z0-9_-]+)/
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m && m[1]) return `https://drive.google.com/uc?export=download&id=${m[1]}`;
+  }
+  return url;
+}
+
+function toast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast ' + type, 3000);
+}
+
+function switchTab(e, tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
+
+async function login() {
+  token = document.getElementById('tokenInput').value.trim();
+  if (!token) { toast('أدخل الرمز', 'error'); return; }
+  const ok = await loadFromGitHub();
+  if (ok) {
+    document.getElementById('loginScreen').classList.add('hidden');
+    document.getElementById('adminScreen').classList.remove('hidden');
+    localStorage.setItem('gh_token', token);
+  }
+}
+
+function logout() {
+  if (!confirm('تسجيل الخروج؟')) return;
+  localStorage.removeItem('gh_token');
+  token = ''; sha = '';
+  document.getElementById('adminScreen').classList.add('hidden');
+  document.getElementById('loginScreen').classList.remove('hidden');
+}
+
+async function loadFromGitHub() {
+  try {
+    const res = await fetch(API_URL, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    });
+    if (!res.ok) {
+      const errData = await res.json().catch(() => ({}));
+      throw new Error((errData.message || 'فشل التحميل') + ' (' + res.status + ')');
+    }
+    const data = await res.json();
+    sha = data.sha;
+    const raw = atob(data.content);
+    content = JSON.parse(decodeURIComponent(escape(raw)));
+    content.books = content.books || [];
+    content.summaries = content.summaries || [];
+    content.questions = content.questions || [];
+    content.videos = content.videos || [];
+    content.stages = content.stages || [];
+    content.basics = content.basics || { title:'أساسيات اللغة الإنكليزية', subtitle:'', items:[] };
+    content.basics.items = content.basics.items || [];
+    content.support = content.support || {};
+    renderAll();
+    setSaved();
+    toast('تم التحميل', 'success');
+    return true;
+  } catch (e) {
+    toast('خطأ: ' + e.message, 'error');
+    return false;
+  }
+}
+
+function fillStageSelects() {
+  const options = content.stages
+    .filter(s => s.visible !== false)
+    .sort((a,b)=>a.order-b.order)
+    .map(s => `<option value="${s.id}">${s.name}</option>`)
+    .join('');
+  ['book-stage','sum-stage','q-stage','v-stage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      const cur = el.value;
+      el.innerHTML = options;
+      if (cur && Array.from(el.options).some(o=>o.value===cur)) el.value = cur;
+    }
+  });
+}
+
+function renderAll() {
+  fillStageSelects();
+  renderBooks();
+  renderSummaries();
+  renderQuestions();
+  renderVideos();
+  renderBasics();
+  renderStages();
+  fillSupport();
+  refreshRaw();
+}
+
+function stageName(id) {
+  const s = content.stages.find(x => x.id === id);
+  return s ? s.name : id;
+}
+
+function previewImg(inputId, imgId) {
+  const url = document.getElementById(inputId).value.trim();
+  const img = document.getElementById(imgId);
+  if (!url) { img.classList.remove('show'); return; }
+  img.src = url;
+  img.classList.add('show');
+  img.onerror = () => img.classList.remove('show');
+}
+
+/* ============ الكتب ============ */
+function saveBook() {
+  const idx = document.getElementById('book-edit-index').value;
+  const driveUrl = document.getElementById('book-pdf').value.trim();
+  const b = {
+    id: idx !== '' ? content.books[parseInt(idx)].id : 'book-' + Date.now(),
+    stageId: document.getElementById('book-stage').value,
+    title: document.getElementById('book-title').value.trim(),
+    description: document.getElementById('book-desc').value.trim(),
+    coverUrl: document.getElementById('book-cover').value.trim(),
+    pdfUrl: convertGoogleDriveUrl(driveUrl),
+    order: idx !== '' ? content.books[parseInt(idx)].order : (content.books.length + 1)
+  };
+  if (!b.title) { toast('اسم الكتاب مطلوب', 'error'); return; }
+  if (idx !== '') { content.books[parseInt(idx)] = b; toast('تم التعديل ✅', 'success'); }
+  else { content.books.push(b); toast('تمت الإضافة ✅', 'success'); }
+  cancelBookEdit(); renderBooks(); markUnsaved();
+}
+
+function editBook(i) {
+  const b = content.books[i];
+  document.getElementById('book-edit-index').value = i;
+  document.getElementById('book-stage').value = b.stageId;
+  document.getElementById('book-title').value = b.title;
+  document.getElementById('book-desc').value = b.description || '';
+  document.getElementById('book-cover').value = b.coverUrl || '';
+  document.getElementById('book-pdf').value = b.pdfUrl || '';
+  document.getElementById('book-form-title').textContent = 'تعديل الكتاب';
+  document.getElementById('book-save-btn').textContent = '💾 حفظ التعديل';
+  document.getElementById('book-cancel-btn').classList.remove('hidden');
+  previewImg('book-cover','book-cover-preview');
+  document.getElementById('tab-books').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelBookEdit() {
+  document.getElementById('book-edit-index').value = '';
+  ['book-title','book-desc','book-cover','book-pdf'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('book-form-title').textContent = 'إضافة كتاب';
+  document.getElementById('book-save-btn').textContent = '➕ إضافة الكتاب';
+  document.getElementById('book-cancel-btn').classList.add('hidden');
+  document.getElementById('book-cover-preview').classList.remove('show');
+}
+
+function delBook(i) {
+  if (!confirm('حذف هذا الكتاب؟')) return;
+  content.books.splice(i, 1);
+  renderBooks(); markUnsaved(); toast('تم الحذف', 'success');
+}
+
+function renderBooks() {
+  const el = document.getElementById('books-list');
+  if (!content.books.length) { el.innerHTML = '<div class="empty">لا توجد كتب بعد</div>'; return; }
+  el.innerHTML = content.books.map((b,i) => `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">📖 ${b.title}</div>
+        <div class="item-desc">${stageName(b.stageId)}${b.description ? ' · ' + b.description : ''}</div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editBook(${i})">✏️</button>
+        <button class="icon-btn del" onclick="delBook(${i})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ الملخصات ============ */
+function saveSummary() {
+  const idx = document.getElementById('sum-edit-index').value;
+  const s = {
+    id: idx !== '' ? content.summaries[parseInt(idx)].id : 'sum-' + Date.now(),
+    stageId: document.getElementById('sum-stage').value,
+    title: document.getElementById('sum-title').value.trim(),
+    description: document.getElementById('sum-desc').value.trim(),
+    pdfUrl: convertGoogleDriveUrl(document.getElementById('sum-pdf').value.trim()),
+    imageUrls: idx !== '' ? (content.summaries[parseInt(idx)].imageUrls || []) : [],
+    order: idx !== '' ? content.summaries[parseInt(idx)].order : (content.summaries.length + 1)
+  };
+  if (!s.title) { toast('العنوان مطلوب', 'error'); return; }
+  if (idx !== '') { content.summaries[parseInt(idx)] = s; toast('تم التعديل ✅', 'success'); }
+  else { content.summaries.push(s); toast('تمت الإضافة ✅', 'success'); }
+  cancelSummaryEdit(); renderSummaries(); markUnsaved();
+}
+
+function editSummary(i) {
+  const s = content.summaries[i];
+  document.getElementById('sum-edit-index').value = i;
+  document.getElementById('sum-stage').value = s.stageId;
+  document.getElementById('sum-title').value = s.title;
+  document.getElementById('sum-desc').value = s.description || '';
+  document.getElementById('sum-pdf').value = s.pdfUrl || '';
+  document.getElementById('sum-form-title').textContent = 'تعديل الملخص';
+  document.getElementById('sum-save-btn').textContent = '💾 حفظ التعديل';
+  document.getElementById('sum-cancel-btn').classList.remove('hidden');
+  document.getElementById('tab-summaries').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelSummaryEdit() {
+  document.getElementById('sum-edit-index').value = '';
+  ['sum-title','sum-desc','sum-pdf'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('sum-form-title').textContent = 'إضافة ملخص';
+  document.getElementById('sum-save-btn').textContent = '➕ إضافة';
+  document.getElementById('sum-cancel-btn').classList.add('hidden');
+}
+
+function delSummary(i) {
+  if (!confirm('حذف هذا الملخص؟')) return;
+  content.summaries.splice(i, 1);
+  renderSummaries(); markUnsaved(); toast('تم الحذف', 'success');
+}
+
+function renderSummaries() {
+  const el = document.getElementById('summaries-list');
+  if (!content.summaries.length) { el.innerHTML = '<div class="empty">لا توجد ملخصات بعد</div>'; return; }
+  el.innerHTML = content.summaries.map((s,i) => `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">📝 ${s.title}</div>
+        <div class="item-desc">${stageName(s.stageId)}${s.description ? ' · ' + s.description : ''}</div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editSummary(${i})">✏️</button>
+        <button class="icon-btn del" onclick="delSummary(${i})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ الأسئلة ============ */
+const CAT_LABELS = { monthly:'شهرية 📅', midyear:'نصف السنة 📗', final:'نهاية السنة 📕', ministry:'وزارية 🏆' };
+
+function saveQuestion() {
+  const idx = document.getElementById('q-edit-index').value;
+  const q = {
+    id: idx !== '' ? content.questions[parseInt(idx)].id : 'q-' + Date.now(),
+    stageId: document.getElementById('q-stage').value,
+    category: document.getElementById('q-cat').value,
+    year: document.getElementById('q-year').value.trim(),
+    title: document.getElementById('q-title').value.trim(),
+    description: document.getElementById('q-desc').value.trim(),
+    pdfUrl: convertGoogleDriveUrl(document.getElementById('q-pdf').value.trim()),
+    imageUrls: idx !== '' ? (content.questions[parseInt(idx)].imageUrls || []) : [],
+    order: idx !== '' ? content.questions[parseInt(idx)].order : (content.questions.length + 1)
+  };
+  if (!q.title) { toast('العنوان مطلوب', 'error'); return; }
+  if (idx !== '') { content.questions[parseInt(idx)] = q; toast('تم التعديل ✅', 'success'); }
+  else { content.questions.push(q); toast('تمت الإضافة ✅', 'success'); }
+  cancelQuestionEdit(); renderQuestions(); markUnsaved();
+}
+
+function editQuestion(i) {
+  const q = content.questions[i];
+  document.getElementById('q-edit-index').value = i;
+  document.getElementById('q-stage').value = q.stageId;
+  document.getElementById('q-cat').value = q.category;
+  document.getElementById('q-year').value = q.year || '';
+  document.getElementById('q-title').value = q.title;
+  document.getElementById('q-desc').value = q.description || '';
+  document.getElementById('q-pdf').value = q.pdfUrl || '';
+  document.getElementById('q-form-title').textContent = 'تعديل الأسئلة';
+  document.getElementById('q-save-btn').textContent = '💾 حفظ التعديل';
+  document.getElementById('q-cancel-btn').classList.remove('hidden');
+  document.getElementById('tab-questions').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelQuestionEdit() {
+  document.getElementById('q-edit-index').value = '';
+  ['q-title','q-desc','q-pdf','q-year'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('q-form-title').textContent = 'إضافة أسئلة';
+  document.getElementById('q-save-btn').textContent = '➕ إضافة';
+  document.getElementById('q-cancel-btn').classList.add('hidden');
+}
+
+function delQuestion(i) {
+  if (!confirm('حذف هذه الأسئلة؟')) return;
+  content.questions.splice(i, 1);
+  renderQuestions(); markUnsaved(); toast('تم الحذف', 'success');
+}
+
+function renderQuestions() {
+  const el = document.getElementById('questions-list');
+  if (!content.questions.length) { el.innerHTML = '<div class="empty">لا توجد أسئلة بعد</div>'; return; }
+  el.innerHTML = content.questions.map((q,i) => {
+    const extras = [stageName(q.stageId), CAT_LABELS[q.category]||q.category];
+    if (q.year) extras.push(q.year);
+    return `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">❓ ${q.title}</div>
+        <div class="item-desc">${extras.join(' · ')}</div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editQuestion(${i})">✏️</button>
+        <button class="icon-btn del" onclick="delQuestion(${i})">🗑</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ============ الفيديوهات ============ */
+function saveVideo() {
+  const idx = document.getElementById('v-edit-index').value;
+  const v = {
+    id: idx !== '' ? content.videos[parseInt(idx)].id : 'v-' + Date.now(),
+    stageId: document.getElementById('v-stage').value,
+    title: document.getElementById('v-title').value.trim(),
+    description: document.getElementById('v-desc').value.trim(),
+    thumbnailUrl: document.getElementById('v-thumb').value.trim(),
+    youtubeUrl: document.getElementById('v-url').value.trim(),
+    duration: document.getElementById('v-duration').value.trim(),
+    order: idx !== '' ? content.videos[parseInt(idx)].order : (content.videos.length + 1)
+  };
+  if (!v.title) { toast('العنوان مطلوب', 'error'); return; }
+  if (idx !== '') { content.videos[parseInt(idx)] = v; toast('تم التعديل ✅', 'success'); }
+  else { content.videos.push(v); toast('تمت الإضافة ✅', 'success'); }
+  cancelVideoEdit(); renderVideos(); markUnsaved();
+}
+
+function editVideo(i) {
+  const v = content.videos[i];
+  document.getElementById('v-edit-index').value = i;
+  document.getElementById('v-stage').value = v.stageId;
+  document.getElementById('v-title').value = v.title;
+  document.getElementById('v-desc').value = v.description || '';
+  document.getElementById('v-thumb').value = v.thumbnailUrl || '';
+  document.getElementById('v-url').value = v.youtubeUrl || '';
+  document.getElementById('v-duration').value = v.duration || '';
+  document.getElementById('v-form-title').textContent = 'تعديل الفيديو';
+  document.getElementById('v-save-btn').textContent = '💾 حفظ التعديل';
+  document.getElementById('v-cancel-btn').classList.remove('hidden');
+  previewImg('v-thumb','v-thumb-preview');
+  document.getElementById('tab-videos').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelVideoEdit() {
+  document.getElementById('v-edit-index').value = '';
+  ['v-title','v-desc','v-thumb','v-url','v-duration'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('v-form-title').textContent = 'إضافة فيديو';
+  document.getElementById('v-save-btn').textContent = '➕ إضافة';
+  document.getElementById('v-cancel-btn').classList.add('hidden');
+  document.getElementById('v-thumb-preview').classList.remove('show');
+}
+
+function delVideo(i) {
+  if (!confirm('حذف هذا الفيديو؟')) return;
+  content.videos.splice(i, 1);
+  renderVideos(); markUnsaved(); toast('تم الحذف', 'success');
+}
+
+function renderVideos() {
+  const el = document.getElementById('videos-list');
+  if (!content.videos.length) { el.innerHTML = '<div class="empty">لا توجد فيديوهات بعد</div>'; return; }
+  el.innerHTML = content.videos.map((v,i) => `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">🎬 ${v.title}</div>
+        <div class="item-desc">${stageName(v.stageId)}${v.duration ? ' · ' + v.duration : ''}</div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editVideo(${i})">✏️</button>
+        <button class="icon-btn del" onclick="delVideo(${i})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ الأساسيات ============ */
+function saveBasic() {
+  const idx = document.getElementById('b-edit-index').value;
+  const b = {
+    id: idx !== '' ? content.basics.items[parseInt(idx)].id : 'basic-' + Date.now(),
+    title: document.getElementById('b-title').value.trim(),
+    description: document.getElementById('b-desc').value.trim(),
+    pdfUrl: convertGoogleDriveUrl(document.getElementById('b-pdf').value.trim()),
+    imageUrl: ''
+  };
+  if (!b.title) { toast('العنوان مطلوب', 'error'); return; }
+  if (idx !== '') { content.basics.items[parseInt(idx)] = b; toast('تم التعديل ✅', 'success'); }
+  else { content.basics.items.push(b); toast('تمت الإضافة ✅', 'success'); }
+  cancelBasicEdit(); renderBasics(); markUnsaved();
+}
+
+function editBasic(i) {
+  const b = content.basics.items[i];
+  document.getElementById('b-edit-index').value = i;
+  document.getElementById('b-title').value = b.title;
+  document.getElementById('b-desc').value = b.description || '';
+  document.getElementById('b-pdf').value = b.pdfUrl || '';
+  document.getElementById('b-form-title').textContent = 'تعديل عنصر الأساسيات';
+  document.getElementById('b-save-btn').textContent = '💾 حفظ التعديل';
+  document.getElementById('b-cancel-btn').classList.remove('hidden');
+  document.getElementById('tab-basics').scrollIntoView({behavior:'smooth'});
+}
+
+function cancelBasicEdit() {
+  document.getElementById('b-edit-index').value = '';
+  ['b-title','b-desc','b-pdf'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('b-form-title').textContent = 'إضافة عنصر أساسيات';
+  document.getElementById('b-save-btn').textContent = '➕ إضافة';
+  document.getElementById('b-cancel-btn').classList.add('hidden');
+}
+
+function delBasic(i) {
+  if (!confirm('حذف هذا العنصر؟')) return;
+  content.basics.items.splice(i, 1);
+  renderBasics(); markUnsaved(); toast('تم الحذف', 'success');
+}
+
+function renderBasics() {
+  const el = document.getElementById('basics-list');
+  if (!content.basics.items.length) { el.innerHTML = '<div class="empty">لا يوجد محتوى بعد</div>'; return; }
+  el.innerHTML = content.basics.items.map((b,i) => `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">🌟 ${b.title}</div>
+        <div class="item-desc">${b.description||''}</div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editBasic(${i})">✏️</button>
+        <button class="icon-btn del" onclick="delBasic(${i})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ============ المراحل ============ */
+function renderStages() {
+  const el = document.getElementById('stages-list');
+  el.innerHTML = [...content.stages].sort((a,b)=>a.order-b.order).map((s) => {
+    const realIndex = content.stages.indexOf(s);
+    return `
+    <div class="item">
+      <div class="item-info">
+        <div class="item-title">${s.name}</div>
+        <div class="item-desc">
+          ${s.type === 'middle' ? '🏫 متوسطة' : '🎓 إعدادية'} ·
+          ترتيب ${s.order} ·
+          ${s.visible !== false ? 'ظاهرة ✅' : 'مخفية 🚫'}
+          ${s.hasMinistry ? ' · 🏆 وزاريات' : ''}
+        </div>
+      </div>
+      <div class="item-actions">
+        <button class="icon-btn" onclick="editStage(${realIndex})">✏️</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function editStage(i) {
+  const s = content.stages[i];
+  const newName = prompt('اسم المرحلة:', s.name);
+  if (newName === null) return;
+  const newOrder = prompt('الترتيب (رقم):', s.order);
+  if (newOrder === null) return;
+  const vis = confirm('هل تريد إظهارها للطلاب؟\n(موافق = إظهار، إلغاء = إخفاء)');
+  const min = confirm('هل تريد تفعيل قسم الوزاريات لهذه المرحلة؟\n(موافق = نعم، إلغاء = لا)');
+  content.stages[i].name = newName.trim() || s.name;
+  content.stages[i].order = parseInt(newOrder) || s.order;
+  content.stages[i].visible = vis;
+  content.stages[i].hasMinistry = min;
+  renderStages();
+  markUnsaved();
+  toast('تم التعديل ✅', 'success');
+}
+
+/* ============ الدعم ============ */
+function fillSupport() {
+  document.getElementById('s-teacher-name').value = content.support.teacherName || '';
+  document.getElementById('s-teacher-phone').value = content.support.teacherPhone || '';
+  document.getElementById('s-dev-name').value = content.support.developerName || '';
+  document.getElementById('s-dev-wa').value = content.support.developerWhatsapp || '';
+}
+
+function saveSupport() {
+  content.support = {
+    teacherName: document.getElementById('s-teacher-name').value.trim(),
+    teacherPhone: document.getElementById('s-teacher-phone').value.trim(),
+    developerName: document.getElementById('s-dev-name').value.trim(),
+    developerWhatsapp: document.getElementById('s-dev-wa').value.trim()
+  };
+  markUnsaved();
+  toast('تم الحفظ - اضغط "حفظ الآن"', 'success');
+}
+
+/* ============ Helpers ============ */
+function setSaved() {
+  const b = document.getElementById('saveStatus');
+  b.textContent = 'محفوظ ✅';
+  b.className = 'badge saved-badge';
+}
+
+function markUnsaved() {
+  const b = document.getElementById('saveStatus');
+  b.textContent = 'غير محفوظ ⚠️';
+  b.className = 'badge unsaved-badge';
+  refreshRaw();
+}
+
+function refreshRaw() {
+  document.getElementById('rawJson').value = JSON.stringify(content, null, 2);
+}
+
+function applyRaw() {
+  try {
+    content = JSON.parse(document.getElementById('rawJson').value);
+    content.books = content.books || [];
+    content.summaries = content.summaries || [];
+    content.questions = content.questions || [];
+    content.videos = content.videos || [];
+    content.stages = content.stages || [];
+    content.basics = content.basics || { title:'أساسيات اللغة الإنكليزية', subtitle:'', items:[] };
+    content.basics.items = content.basics.items || [];
+    content.support = content.support || {};
+    renderAll();
+    markUnsaved();
+    toast('تم التطبيق', 'success');
+  } catch (e) {
+    toast('JSON غير صالح: ' + e.message, 'error');
+  }
+}
+
+async function saveToGitHub() {
+  try {
+    content.lastUpdated = new Date().toISOString();
+    const body = {
+      message: 'تحديث المحتوى - ' + new Date().toLocaleString('ar-IQ'),
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+      sha: sha,
+      branch: GITHUB_BRANCH
+    };
+    const res = await fetch(API_URL, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github+json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(err.message || 'فشل الحفظ');
+    }
+    const data = await res.json();
+    sha = data.content.sha;
+    setSaved();
+    toast('تم الحفظ بنجاح! ✅', 'success');
+  } catch (e) {
+    toast('خطأ: ' + e.message, 'error');
+  }
+}
+
+window.addEventListener('load', async () => {
+  const saved = localStorage.getItem('gh_token');
+  if (saved) {
+    token = saved;
+    document.getElementById('tokenInput').value = saved;
+    const ok = await loadFromGitHub();
+    if (ok) {
+      document.getElementById('loginScreen').classList.add('hidden');
+      document.getElementById('adminScreen').classList.remove('hidden');
+    }
+  }
+});
+</script>
+</body>
+      </html>
